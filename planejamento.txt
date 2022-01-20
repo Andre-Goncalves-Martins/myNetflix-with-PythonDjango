@@ -1,0 +1,27 @@
+. venv\Scripts\Activate.ps1
+
+- HomePage
+- Fazer Login e Criar Conta( Usuário e Autenticação)
+    - Username
+    - senha
+    - Filmes já vistos
+    - Editar Perfil
+
+- Filmes/Series
+    - thumb
+    - título
+    - descrição
+    - categoria
+    - quantidade de views
+    - data de criação
+    - Episódios
+        - vídeos
+        - título
+
+- Barra de Pesquisa
+
+
+Para Criação das páginas do site temos que construir três coisas:
+1- url (o link)
+2- view (é oq vai dizer oq vai acontecer quando a pessoa entrar naquele link)
+3- template (a parte visual exibida na página(em html))

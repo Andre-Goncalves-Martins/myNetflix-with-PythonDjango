@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+Filme {{ object.titulo }} na Dezflix
+{% endblock %}
+
+{% block content %}
+<div class="py-20 px-5">
+    <h1>Esse é o detalhes do filme: {{ object.titulo }}</h1>
+    <p>{{ object }}</p>
+    <p>{{ object.descricao }}</p>
+    <img src="{{ object.thumb.url }}" alt="">
+
+    <h2>Trailers</h2>
+    {% for trailer in object.episodios.all %}
+    <a href="{{ trailer.video }}">
+        <p>Trailer {{ forloop.counter }}: {{trailer.titulo }}</p>
+    </a>
+    {% endfor %}
+</div>
+
+<div class="py-10 px-5">
+    <h2>Filmes Relacionados</h2>
+    {% for filme in filmes_relacionados %}
+    <a href="{% url 'filme:detalhesfilmes' filme.pk %}">
+        <p> {{ filme.titulo }}</p>
+    </a>
+    {% endfor %}
+</div>
+
+
+{% endblock %}
