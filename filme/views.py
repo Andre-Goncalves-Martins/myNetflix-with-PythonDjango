@@ -31,6 +31,19 @@ class Detalhesfilme(DetailView):
         context['filmes_relacionados'] = filmes_relacionados
         return context
 
+class Pesquisafilme(ListView):
+    template_name = 'pesquisa.html'
+    model = Filme
+
+    def get_queryset(self):
+        texto_pesquisa = self.request.GET.get('query')
+        if texto_pesquisa:
+            object_list = Filme.objects.filter(titulo__icontains=texto_pesquisa)
+            return object_list
+        else:
+            return super().get_queryset()
+        
+
 #Estrutura se fosse fuction based views
 
 #def homepage(request):

@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
 #Lista de categorias para termos as opções lá no site
@@ -30,3 +31,6 @@ class Episodio(models.Model):
 
     def __str__(self) -> str:
          return self.titulo
+
+class Usuario(AbstractUser):
+    filmes_vistos = models.ManyToManyField("Filme")

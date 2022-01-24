@@ -9,6 +9,10 @@ def filmes_alta(request):
     return {"filmes_alta" : film_em_alta}
 
 def filme_destaque(request):
-    destaque = Filme.objects.order_by('-visualizacoes')[0] #Configurando como o filme mais visto
-    #destaque = destaque.order_by('-data_criacao')
+    if Filme.objects.all().order_by('-visualizacoes'):
+        destaque = Filme.objects.order_by('-visualizacoes')[0] #Configurando como o filme mais visto
+    else:
+        destaque = None
     return {"filme_destaque" : destaque}
+    #destaque = destaque.order_by('-data_criacao')
+    
