@@ -21,8 +21,10 @@ class Detalhesfilme(DetailView):
 
     def get(self, request, *args, **kwargs):
         filme = self.get_object()
-        filme.visualizacoes += 1
+        filme.visualizacoes += 1        
         filme.save()
+        usuario = request.user
+        usuario.filmes_vistos.add(filme) #Adicionando filme num campo do banco de dados
         return super().get(request, *args, **kwargs)
     
     def get_context_data(self, **kwargs):
