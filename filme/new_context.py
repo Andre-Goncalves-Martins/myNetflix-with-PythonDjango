@@ -15,4 +15,8 @@ def filme_destaque(request):
         destaque = None
     return {"filme_destaque" : destaque}
     #destaque = destaque.order_by('-data_criacao')
-    
+
+# def filmes_categoria(request):
+#     film_acao = Filme.objects.filter(categoria= Filme.ge'acao')
+
+#     return film_acao
