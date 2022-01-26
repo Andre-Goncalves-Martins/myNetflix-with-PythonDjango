@@ -17,7 +17,7 @@ Filme {{ object.titulo }} na Dezflix
                {{ object.descricao|slice:":100" }}...
             </p>
             <div class="flex my-4">
-                <a href="{{ object.episodios.first.video }}">
+                <a href="{{ object.trailers.first.video }}">
                     <button class="flex items-center bg-white py-2 px-5 rounded-md" style='color:black;'>
                         <ion-icon name="play" class="text-2xl"></ion-icon>
                         <span class="ml-3 font-medium">
@@ -37,6 +37,7 @@ Filme {{ object.titulo }} na Dezflix
                 <p class="text-gray-100 text-lg">
                     {{ object.descricao }}
                     <br>
+                    <br>
                     Visualizações: {{ object.visualizacoes }}
                 </p>
             </div>
@@ -45,7 +46,7 @@ Filme {{ object.titulo }} na Dezflix
                 <h2 class="text-gray-200 text-3xl font-medium">
                     Trailers
                 </h2>
-                {% for trailer in object.episodios.all %}    
+                {% for trailer in object.trailers.all %}    
                     <h3 class='text-lg'>                        
                         <a href="{{ trailer.video }}">
                             <p>Trailer {{ forloop.counter }}: {{trailer.titulo }}</p>

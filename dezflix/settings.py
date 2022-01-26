@@ -66,6 +66,7 @@ TEMPLATES = [
                 'filme.new_context.filmes_recentes',
                 'filme.new_context.filmes_alta',
                 'filme.new_context.filme_destaque',
+                'filme.new_context.filmes_categoria',
             ],
         },
     },

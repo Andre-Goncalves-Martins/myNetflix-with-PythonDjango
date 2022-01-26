@@ -238,43 +238,77 @@ h1 {
         <div class="wrapper">
           <section id="section1acao" class="flex flex-nowrap items-center justify-center space-x-8">
             <a href="#section2acao" class="arrow__btn text-6xl page">‹</a>
-             {% for filme in object_list %}
-                {% if filme.categoria == 'acao' %}
+             {% for filme in filmes_acao %}                
                 <div class="item h-64 w-1/4 m-4">
                   <a href="{% url 'filme:detalhesfilmes' filme.pk %}">
                     <img src="{{ filme.thumb.url}}" class="rounded-md w-full h-full object-cover">
                   </a>
-                </div>
-              {% endif %}
+                </div>              
               {% endfor %}
                 <a href="#section2acao" class="arrow__btn text-6xl">›</a>
-          </section>
-          
-
+          </section>        
     </div>
-</section>
+  </section>
 
+  <section class='bg-primary_black flex justify-center py-10'>
+    <div class="p-8 w-10/12 relative" >
+        <h2 class="text-gray-200 text-2xl font-medium">
+            Comédia
+        </h2>
+        <div class="wrapper">
+          <section id="section1com" class="flex flex-nowrap items-center justify-center space-x-8">
+            <a href="#section2com" class="arrow__btn text-6xl page">‹</a>
+             {% for filme in filmes_comedia %}                
+                <div class="item h-64 w-1/4 m-4">
+                  <a href="{% url 'filme:detalhesfilmes' filme.pk %}">
+                    <img src="{{ filme.thumb.url}}" class="rounded-md w-full h-full object-cover">
+                  </a>
+                </div>              
+              {% endfor %}
+                <a href="#section2com" class="arrow__btn text-6xl">›</a>
+          </section>        
+    </div>
+  </section>
+
+  <section class='bg-primary_black flex justify-center py-10'>
+    <div class="p-8 w-10/12 relative" >
+        <h2 class="text-gray-200 text-2xl font-medium">
+            Terror
+        </h2>
+        <div class="wrapper">
+          <section id="section1ter" class="flex flex-nowrap items-center justify-center space-x-8">
+            <a href="#section2ter" class="arrow__btn text-6xl page">‹</a>
+             {% for filme in filmes_terror %}                
+                <div class="item h-64 w-1/4 m-4">
+                  <a href="{% url 'filme:detalhesfilmes' filme.pk %}">
+                    <img src="{{ filme.thumb.url}}" class="rounded-md w-full h-full object-cover">
+                  </a>
+                </div>              
+              {% endfor %}
+                <a href="#section2ter" class="arrow__btn text-6xl">›</a>
+          </section>        
+    </div>
+  </section>
+
+  <section class='bg-primary_black flex justify-center py-10'>
+    <div class="p-8 w-10/12 relative" >
+        <h2 class="text-gray-200 text-2xl font-medium">
+            Ficção Científica
+        </h2>
+        <div class="wrapper">
+          <section id="section1acao" class="flex flex-nowrap items-center justify-center space-x-8">
+            <a href="#section2fic" class="arrow__btn text-6xl page">‹</a>
+             {% for filme in filmes_ficcao %}                
+                <div class="item h-64 w-1/4 m-4">
+                  <a href="{% url 'filme:detalhesfilmes' filme.pk %}">
+                    <img src="{{ filme.thumb.url}}" class="rounded-md w-full h-full object-cover">
+                  </a>
+                </div>              
+              {% endfor %}
+                <a href="#section2fic" class="arrow__btn text-6xl">›</a>
+          </section>        
+    </div>
+  </section>
 
 </main>
-
-<!--
-<div class="py-20 px-5">
-    <h1>Essa é a home filmes</h1>
-    {% for filme in object_list %}
-    <a href="{% url 'filme:detalhesfilmes' filme.pk %}"><p>{{filme.titulo}}</p></a>
-    <p>{{ filme.descricao }}</p>
-    <img src="{{ filme.thumb.url}}" alt="">
-    {% endfor %}
-</div>
-
-<div class="py-10 px-5">
-    <h2>Novo</h2>
-    {{filmes_recentes}}
-</div>
-
-<div class="py-10 px-5">
-    <h2>Filmes em Alta</h2>
-    {{filmes_alta}}
-</div>
--->
 {% endblock %}

@@ -1,3 +1,4 @@
+from dataclasses import field
 from .models import Filme
 
 def filmes_recentes(request):
@@ -16,7 +17,10 @@ def filme_destaque(request):
     return {"filme_destaque" : destaque}
     #destaque = destaque.order_by('-data_criacao')
 
-# def filmes_categoria(request):
-#     film_acao = Filme.objects.filter(categoria= Filme.ge'acao')
-
-#     return film_acao
+def filmes_categoria(request):
+    acao = Filme.objects.filter(categoria='acao')
+    comedia = Filme.objects.filter(categoria='comedia')
+    terror = Filme.objects.filter(categoria='terror')
+    ficcao = Filme.objects.filter(categoria='ficcao')
+    
+    return {'filmes_acao' : acao, 'filmes_comedia' : comedia, 'filmes_terror' : terror, 'filmes_ficcao' : ficcao}

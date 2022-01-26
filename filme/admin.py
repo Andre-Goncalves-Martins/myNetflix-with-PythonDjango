@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Episodio, Filme, Usuario
+from .models import Trailer, Filme, Usuario
 from django.contrib.auth.admin import UserAdmin
 
 #Campo personalizado dentro de usuários para os filmes vistos
@@ -11,5 +11,5 @@ UserAdmin.fieldsets = tuple(ADICIONAR_CAMPOS)
 
 # Register your models here.
 admin.site.register(Filme)
-admin.site.register(Episodio)
+admin.site.register(Trailer)
 admin.site.register(Usuario, UserAdmin)

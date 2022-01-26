@@ -24,8 +24,8 @@ class Filme(models.Model):
     def __str__(self) -> str:
         return self.titulo
 
-class Episodio(models.Model):
-    filme = models.ForeignKey("Filme", related_name="episodios", on_delete=models.CASCADE)
+class Trailer(models.Model):
+    filme = models.ForeignKey("Filme", related_name="trailers", on_delete=models.CASCADE)
     titulo = models.CharField(max_length=100)
     video = models.URLField()
 
