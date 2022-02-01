@@ -1,20 +1,25 @@
-from multiprocessing import context
-from unicodedata import category
-from django.shortcuts import render
+from django.shortcuts import redirect
 from . models import Filme
 from django.views.generic import TemplateView, ListView, DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 class Homepage(TemplateView): #TemplateView é usada quando vc quer somente apresentar um template html
     template_name = 'homepage.html'
 
-class Homefilmes(ListView): #ListView vai passar uma lista de todos os objetos q eu quiser do meu banco de dados dentro de um object_list
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect('filme:homefilmes')
+        else:
+            return super().get(request, *args, **kwargs)#redireciona para a homepage
+
+class Homefilmes(LoginRequiredMixin, ListView): #ListView vai passar uma lista de todos os objetos q eu quiser do meu banco de dados dentro de um object_list
                             #Observe como está implementado no homefilmes.html   
     template_name = 'homefilmes.html'
     model = Filme
     #object_list -> lista de itens do modelo
 
-class Detalhesfilme(DetailView):
+class Detalhesfilme(LoginRequiredMixin, DetailView):
     template_name = 'detalhesfilmes.html'
     model = Filme
     #object -> 1 item do nosso modelo
@@ -25,7 +30,7 @@ class Detalhesfilme(DetailView):
         filme.save()
         usuario = request.user
         usuario.filmes_vistos.add(filme) #Adicionando filme num campo do banco de dados
-        return super().get(request, *args, **kwargs)
+        return super().get(request, *args, **kwargs) # redireciona o user para url do filme selecionado
     
     def get_context_data(self, **kwargs):
         context = super(DetailView, self).get_context_data(**kwargs)
@@ -33,7 +38,7 @@ class Detalhesfilme(DetailView):
         context['filmes_relacionados'] = filmes_relacionados
         return context
 
-class Pesquisafilme(ListView):
+class Pesquisafilme(LoginRequiredMixin, ListView):
     template_name = 'pesquisa.html'
     model = Filme
 
@@ -45,6 +50,9 @@ class Pesquisafilme(ListView):
         else:
             return super().get_queryset()
         
+class Perfil(LoginRequiredMixin, TemplateView):
+    template_name= 'editarperfil.html'
+    
 
 #Estrutura se fosse fuction based views
 
