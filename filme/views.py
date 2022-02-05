@@ -1,7 +1,8 @@
-from django.shortcuts import redirect
+from django.shortcuts import redirect, reverse
 from . models import Filme
-from django.views.generic import TemplateView, ListView, DetailView
+from django.views.generic import TemplateView, ListView, DetailView, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .forms import CriarContaForm
 
 # Create your views here.
 class Homepage(TemplateView): #TemplateView é usada quando vc quer somente apresentar um template html
@@ -53,10 +54,16 @@ class Pesquisafilme(LoginRequiredMixin, ListView):
 class Perfil(LoginRequiredMixin, TemplateView):
     template_name= 'editarperfil.html'
     
-class Criarconta(TemplateView):
+class Criarconta(FormView):
     template_name= 'criarconta.html'
+    form_class = CriarContaForm
 
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
 
+    def get_success_url(self):
+        return reverse('filme:login')
 #Estrutura se fosse fuction based views
 
 #def homepage(request):
