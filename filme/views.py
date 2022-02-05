@@ -1,18 +1,29 @@
 from django.shortcuts import redirect, reverse
-from . models import Filme
+from . models import Filme, Usuario
 from django.views.generic import TemplateView, ListView, DetailView, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import CriarContaForm
+from .forms import CriarContaForm, FormHome
 
 # Create your views here.
-class Homepage(TemplateView): #TemplateView é usada quando vc quer somente apresentar um template html
+class Homepage(FormView): #TemplateView é usada quando vc quer somente apresentar um template html
     template_name = 'homepage.html'
+    form_class = FormHome
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             return redirect('filme:homefilmes')
         else:
             return super().get(request, *args, **kwargs)#redireciona para a homepage
+
+    def get_success_url(self):
+        email = self.request.POST.get('email')
+        user = Usuario.objects.filter(email=email)
+
+        if user:
+            return reverse('filme:login')
+        else:
+            return reverse('filme:criarconta')
+
 
 class Homefilmes(LoginRequiredMixin, ListView): #ListView vai passar uma lista de todos os objetos q eu quiser do meu banco de dados dentro de um object_list
                             #Observe como está implementado no homefilmes.html   
