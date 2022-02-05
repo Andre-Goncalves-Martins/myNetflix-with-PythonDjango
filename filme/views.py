@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, reverse
 from . models import Filme, Usuario
-from django.views.generic import TemplateView, ListView, DetailView, FormView
+from django.views.generic import TemplateView, ListView, DetailView, FormView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import CriarContaForm, FormHome
 
@@ -61,9 +61,6 @@ class Pesquisafilme(LoginRequiredMixin, ListView):
             return object_list
         else:
             return super().get_queryset()
-        
-class Perfil(LoginRequiredMixin, TemplateView):
-    template_name= 'editarperfil.html'
     
 class Criarconta(FormView):
     template_name= 'criarconta.html'
@@ -75,6 +72,15 @@ class Criarconta(FormView):
 
     def get_success_url(self):
         return reverse('filme:login')
+
+class Perfil(LoginRequiredMixin, UpdateView):
+    template_name = 'editarperfil.html'
+    model = Usuario
+    fields = ['first_name', 'last_name', 'email']
+
+    def get_success_url(self):
+        return reverse('filme:homefilmes')
+
 #Estrutura se fosse fuction based views
 
 #def homepage(request):
