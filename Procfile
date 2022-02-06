@@ -1,0 +1,1 @@
+web: gunicorn dezflix.wsgi --log-file -

@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-j_$7)c99%2!hx3==sl+4n)2bbm+2r$pea4&47bx8#_cf%s#%#b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False #Setar como True quando tiver programando ou fim deixar falso
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1','dezflix.herokuapp.com']
 
 
 # Application definition
