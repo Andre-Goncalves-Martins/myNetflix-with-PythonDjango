@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+Acesso Negado
+{% endblock %}
+
+{% block content %}
+    <header class="min-h-screen bg-black bg-opacity-75 bg-blend-overlay showcase border-gray-600 border-b-8 flex justify-center items-center bg-no-repeat"  style="background-image: url('{% static 'images/background_netflix.jpg' %}');">
+        <div class="z-10 h-full py-32 md:py-0 text-gray-100 text-center flex items-center flex-col">
+            <h1 class="text-6xl py-10">Acesso Negado!</h1>
+            <h1><a href="{% url 'filme:homefilmes' %}">Voltar para o Início</a></h1>
+        </div>
+    </header>
+
+    <footer class=" px-5 py-10 ">
+        <ul class="flex justify-between items-center">
+            
+            <li>&copy; 2022</li>
+            <li> Feito com Python (Django)</li>
+            <li>AndreGMartins</li>
+        </ul>
+    </footer>
+{% endblock %}

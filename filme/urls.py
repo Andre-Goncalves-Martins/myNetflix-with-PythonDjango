@@ -2,7 +2,7 @@
 # Configurando então os links onde vão estar
 from unicodedata import name
 from django.urls import path, include, reverse_lazy
-from .views import Homepage, Homefilmes, Detalhesfilme, Perfil, Pesquisafilme, Criarconta
+from .views import Acessonegado, Homepage, Homefilmes, Detalhesfilme, Perfil, Pesquisafilme, Criarconta
 from django.contrib.auth import views as auth_view
 
 
@@ -20,4 +20,5 @@ urlpatterns = [
     path('mudarsenha/', auth_view.PasswordChangeView.as_view(template_name='editarperfil.html',
                                                             success_url = reverse_lazy('filme:homefilmes')),
                                                              name='mudarsenha'),
+    path('acessonegado/', Acessonegado.as_view() , name='negado'),                                                            
 ]

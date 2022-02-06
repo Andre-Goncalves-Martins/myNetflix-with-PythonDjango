@@ -78,8 +78,18 @@ class Perfil(LoginRequiredMixin, UpdateView):
     model = Usuario
     fields = ['first_name', 'last_name', 'email']
 
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            if request.path == f'/editarPerfil/{request.user.pk}':
+                return super().get(request, *args, **kwargs)
+            else:
+                return redirect('filme:negado')
+
     def get_success_url(self):
         return reverse('filme:homefilmes')
+
+class Acessonegado(LoginRequiredMixin, TemplateView):
+    template_name = 'acessonegado.html'
 
 #Estrutura se fosse fuction based views
 
