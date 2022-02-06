@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'filme',
     'crispy_forms',
     'crispy_bootstrap5',
+    'cloudinary_storage',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -150,3 +152,11 @@ LOGIN_URL = 'filme:login'
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5' # de onde vem isso: https://github.com/django-crispy-forms/crispy-bootstrap5
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'hb2xzfsfc',
+    'API_KEY':'639512235655559',
+    'API_SECRET':'K0BB5RYciDKbNC3O3vOflk2LWB8',
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
